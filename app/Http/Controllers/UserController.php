@@ -53,9 +53,9 @@ class UserController extends Controller
         return response()->json($id_token);
     }
 
-    public function destroy($userid)
+    public function destroy($externid)
     {
-        $user = User::find($userid);
+        $user = User::where('externid', '=', $externid)->get();
         $user->delete();
         return response()->json($user);
     }
