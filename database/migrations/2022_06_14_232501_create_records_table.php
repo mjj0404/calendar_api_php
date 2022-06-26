@@ -16,11 +16,10 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->id('recordid');
             $table->string('name');
-            $table->string('calendartype');
-            $table->unsignedBigInteger('calendarid');
-            $table->unsignedBigInteger('userid');
-            $table->foreign('calendarid')->references('calendarid')->on('calendars');
-            $table->foreign('userid')->references('userid')->on('users');
+            $table->integer('calendarid');
+            $table->string('externid');
+            
+            $table->foreign('externid')->references('externid')->on('users');
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Google_Client;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,8 +32,19 @@ class AuthServiceProvider extends ServiceProvider
         // the User instance via an API token or any other method necessary.
 
         $this->app['auth']->viaRequest('api', function ($request) {
-            if ($request->input('api_token')) {
-                return User::where('api_token', $request->input('api_token'))->first();
+            require_once(__DIR__ . '/../../vendor/autoload.php');
+            
+            $id_token = $request->bearerToken();
+
+            $CLIENT_ID = "465830011734-j12vai4f5ee41h5v9e1sh5rp5d12csqu.apps.googleusercontent.com";
+            $client = new Google_Client(['client_id' => $CLIENT_ID]);
+            $payload = $client->verifyIdToken($id_token);
+            if ($payload) {
+                $externid = $payload['sub'];
+                $user = User::where('externid', $externid)->first();
+                return $user;
+            } else {
+                return null;
             }
         });
     }
