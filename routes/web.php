@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 
 // usergit rev-parse --show-toplevel
 $router->post('/user/create','UserController@store');
-$router->delete('/user/delete','UserController@destroy');
+$router->delete('/user/delete/{externid}','UserController@destroy');
 // getting records
 $router->get('/me/event', ['middleware' => 'auth','uses' => 'RecordController@getUserRecordsByLunarDate']);
 $router->get('/me', ['middleware' => 'auth','uses' => 'RecordController@getUserRecords']);
