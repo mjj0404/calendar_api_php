@@ -13,11 +13,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable, HasFactory;
 
-    protected $fillable = [
-        'email'
-    ];
     protected $primaryKey = 'userid';
-
     public $timestamps = false;
 
 }
