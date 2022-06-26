@@ -19,12 +19,14 @@ class RecordController extends Controller
     {
         $this->validate($request, [
             "name" => "required",
-            "calendartype" => "required"
+            "externid" => "required",
+            "calendarid" => "required"
         ]);
         
         $record = new Record();
         $record->name = $request->input('name');
-        $record->calendartype = $request->input('calendartype');
+        $record->externid = $request->input('externid');
+        $record->calendarid = $request->input('calendarid');
         $record->save();
 
         return response()->json($record);
@@ -36,16 +38,16 @@ class RecordController extends Controller
         return response()->json($record);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $recordid)
     {
         $this->validate($request, [
             "name" => "required",
-            "calendartype" => "required"
+            "calendarid" => "required"
         ]);
         
-        $record = new Record();
+        $record = Record::find($recordid);
         $record->name = $request->input('name');
-        $record->calendartype = $request->input('calendartype');
+        $record->calendarid = $request->input('calendarid');
         $record->save();
 
         return response()->json($record);
@@ -81,8 +83,8 @@ class RecordController extends Controller
         $startSolarInt = LunarSolarConverter::SolarToInt(date("Y"), date("m"), date("d"));
         
         $endSolar = $startSolar;
-        // $endSolar->solarYear = $startSolar->solarYear + 1;
-        $endSolar->solarMonth = $startSolar->solarMonth + 3;
+        $endSolar->solarYear = $startSolar->solarYear + 1;
+        // $endSolar->solarMonth = $startSolar->solarMonth + 3;
         
         // if today date is leap day in gregorian calendar (Febuary 29th)
         // subtract 1 day from endSolar date value
