@@ -15,7 +15,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// user
+// usergit rev-parse --show-toplevel
 $router->post('/user/create','UserController@store');
 $router->delete('/user/delete','UserController@destroy');
 // getting records
@@ -26,6 +26,9 @@ $router->post('/record/create', 'RecordController@store');
 $router->post('/record/update/{recordid}', 'RecordController@update');
 $router->delete('/record/delete/{recordid}', 'RecordController@destroy');
 $router->get('/record/{recordid}', 'RecordController@show');
+
+// for testing
+$router->get('/record', 'RecordController@index');
 
 $router->get('/', function () use ($router) {
     return $router->app->version();

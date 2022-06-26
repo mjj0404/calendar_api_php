@@ -12,4 +12,5 @@ class Record extends Model
     ];
 
     protected $primaryKey = 'recordid';
+    public $timestamps = false;
 }
