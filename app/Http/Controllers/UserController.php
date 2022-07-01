@@ -41,7 +41,7 @@ class UserController extends Controller
         require_once(__DIR__ . '/../../../vendor/autoload.php');
 
         $id_token = $_POST['tokenid'];
-        $CLIENT_ID = "465830011734-j12vai4f5ee41h5v9e1sh5rp5d12csqu.apps.googleusercontent.com";
+        $CLIENT_ID = "963527123473-f4nfg4h0j1ta0m30i9m5h2ps4vl29pvi.apps.googleusercontent.com";
         $client = new Google_Client(['client_id' => $CLIENT_ID]);
         $payload = $client->verifyIdToken($id_token);
         if ($payload) {

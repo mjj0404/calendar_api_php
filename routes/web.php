@@ -29,6 +29,7 @@ $router->get('/record/{recordid}', 'RecordController@show');
 
 // for testing
 $router->get('/record', 'RecordController@index');
+$router->post('/test','UserController@verify');
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
