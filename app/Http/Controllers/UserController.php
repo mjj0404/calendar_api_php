@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function destroy($externid)
     {
-        $user = User::where('externid', '=', $externid)->get();
+        $user = User::where('externid', '=', $externid)->first();
         $user->delete();
         return response()->json($user);
     }

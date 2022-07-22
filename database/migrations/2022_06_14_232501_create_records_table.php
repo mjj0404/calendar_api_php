@@ -19,8 +19,7 @@ class CreateRecordsTable extends Migration
             $table->integer('calendarid');
             $table->string('externid');
             
-            $table->foreign('externid')->references('externid')->on('users');
-        });
+            $table->foreign('externid')->references('externid')->on('users')->onDelete('cascade');
     }
 
     /**
