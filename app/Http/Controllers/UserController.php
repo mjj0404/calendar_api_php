@@ -21,6 +21,11 @@ class UserController extends Controller
             "email" => "required",
             "externid" => "required"
         ]);
+
+        $user = User::where('externid', '=', $externid)->get();
+        if (!$user) {
+            return response()->json($user);
+        }
         
         $user = new User();
         $user->email = $request->input('email');
