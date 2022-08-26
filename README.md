@@ -9,4 +9,6 @@ Middleware Authentication verifies id token with Google Server to verify valid O
 See [link](https://developers.google.com/identity/protocols/oauth2) for more detail 
 
 User data kept in 3rd party private server:
-user email | name of the event added by user | the date of the event
+- user email
+- name of the event added by user
+- the date of the event
