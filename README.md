@@ -12,3 +12,6 @@ User data kept in 3rd party private server:
 - user email
 - name of the event added by user
 - the date of the event
+
+# License
+MIT License
